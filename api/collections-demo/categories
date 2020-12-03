@@ -1,0 +1,67 @@
+db.getCollection('categories').insert(
+   [
+    {
+      "_id" : ObjectId("5ef518f4322399599e3b42d5"),
+      "name" : "Furniture",
+      "icon" : "floor-lamp",
+      "backgroundColor" : "#fc5c65",
+      "color" : "white"
+    },
+    {
+      "_id" : ObjectId("5ef518fb322399599e3b42d9"),
+      "name" : "Cars",
+      "icon" : "car",
+      "backgroundColor" : "#fd9644",
+      "color" : "white"
+    },
+    {
+      "_id" : ObjectId("5ef51903322399599e3b42dd"),
+      "name" : "Cameras",
+      "icon" : "camera",
+      "backgroundColor" : "#fed330",
+      "color" : "white"
+    },
+    {
+      "_id" : ObjectId("5ef51909322399599e3b42e2"),
+      "name" : "Games",
+      "icon" : "cards",
+      "backgroundColor" : "#26de81",
+      "color" : "white"
+    },
+    {
+      "_id" : ObjectId("5ef5190f322399599e3b42e9"),
+      "name" : "Clothing",
+      "icon" : "shoe-heel",
+      "backgroundColor" : "#2bcbba",
+      "color" : "white"
+    },
+    {
+      "_id" : ObjectId("5ef51916322399599e3b42ed"),
+      "name" : "Sports",
+      "icon" : "basketball",
+      "backgroundColor" : "#45aaf2",
+      "color" : "white"
+    },
+    {
+      "_id" : ObjectId("5ef51920322399599e3b42f4"),
+      "name" : "Movies & Music",
+      "icon" : "headphones",
+      "backgroundColor" : "#4b7bec",
+      "color" : "white"
+    },
+    {
+      "_id" : ObjectId("5ef51926322399599e3b42fb"),
+      "name" : "Books",
+      "icon" : "book-open-variant",
+      "backgroundColor" : "#a55eea",
+      "color" : "white"
+    },
+    {
+      "_id" : ObjectId("5ef5192c322399599e3b42ff"),
+      "name" : "Other",
+      "icon" : "application",
+      "backgroundColor" : "#778ca3",
+      "color" : "white"
+    }
+   ]
+)

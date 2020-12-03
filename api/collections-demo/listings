@@ -1,0 +1,140 @@
+db.getCollection('listings').insert(
+   [
+    {
+      "_id" : ObjectId("5ef65849bd8ad9e79c559d67"),
+      "title" : "Leather jacket",
+      "description" : "DM me for more details.",
+      "images" : [ 
+          {
+              "fileName" : "jacket"
+          }
+      ],
+      "price" : 100.0,
+      "categoryId" : "5ef5190f322399599e3b42e9",
+      "userId" : "5ef50c1a322399599e3b416a",
+      "location" : {
+          "latitude" : 37.78825,
+          "longitude" : -122.4324
+      }
+    },
+    {
+      "_id" : ObjectId("5ef658d1bd8ad9e79c559d85"),
+      "title" : "Bar stool",
+      "description" : "With a discount price.",
+      "images" : [ 
+          {
+              "fileName" : "barstool"
+          }
+      ],
+      "categoryId" : "5ef518f4322399599e3b42d5",
+      "price" : 1200.0,
+      "userId" : "5ef50c2a322399599e3b416f",
+      "location" : {
+          "latitude" : 37.78825,
+          "longitude" : -122.4324
+      }
+    },
+    {
+      "_id" : ObjectId("5ef658e3bd8ad9e79c559d8d"),
+      "title" : "Lantern",
+      "description" : "DM me for more info.",
+      "images" : [ 
+          {
+              "fileName" : "lantern"
+          }
+      ],
+      "price" : 25.0,
+      "categoryId" : "5ef518f4322399599e3b42d5",
+      "userId" : "5ef50c1a322399599e3b416a",
+      "location" : {
+          "latitude" : 37.78825,
+          "longitude" : -122.4324
+      }
+    },
+    {
+      "_id" : ObjectId("5ef658edbd8ad9e79c559d94"),
+      "title" : "Classic shoes",
+      "description" : "At a great price.",
+      "images" : [ 
+          {
+              "fileName" : "shoes"
+          }
+      ],
+      "categoryId" : "5ef5190f322399599e3b42e9",
+      "price" : 100.0,
+      "userId" : "5ef50c2a322399599e3b416f",
+      "location" : {
+          "latitude" : 37.78825,
+          "longitude" : -122.4324
+      }
+    },
+    {
+      "_id" : ObjectId("5ef658f7bd8ad9e79c559d99"),
+      "title" : "Camera",
+      "description" : "Includes box.",
+      "images" : [ 
+          {
+              "fileName" : "camera"
+          }
+      ],
+      "price" : 300.0,
+      "categoryId" : "5ef51903322399599e3b42dd",
+      "userId" : "5ef50c1a322399599e3b416a",
+      "location" : {
+          "latitude" : 37.78825,
+          "longitude" : -122.4324
+      }
+    },
+    {
+      "_id" : ObjectId("5ef65902bd8ad9e79c559d9e"),
+      "title" : "Old TV",
+      "description" : "DM me for details.",
+      "images" : [ 
+          {
+              "fileName" : "tv"
+          }
+      ],
+      "price" : 350.0,
+      "categoryId" : "5ef51903322399599e3b42dd",
+      "userId" : "5ef50c1a322399599e3b416a",
+      "location" : {
+          "latitude" : 37.78825,
+          "longitude" : -122.4324
+      }
+    },
+    {
+      "_id" : ObjectId("5ef6590bbd8ad9e79c559da3"),
+      "title" : "Watch",
+      "description" : "In great conditions.",
+      "images" : [ 
+          {
+              "fileName" : "watch"
+          }
+      ],
+      "categoryId" : "5ef518f4322399599e3b42d5",
+      "price" : 950.0,
+      "userId" : "5ef50c2a322399599e3b416f",
+      "location" : {
+          "latitude" : 37.78825,
+          "longitude" : -122.4324
+      }
+    },
+    {
+      "_id" : ObjectId("5ef65913bd8ad9e79c559da8"),
+      "title" : "Electric guitar",
+      "description" : "DM me asap.",
+      "images" : [ 
+          {
+              "fileName" : "guitar"
+          }
+      ],
+      "categoryId" : "5ef5190f322399599e3b42e9",
+      "price" : 50.0,
+      "userId" : "5ef50c2a322399599e3b416f",
+      "location" : {
+          "latitude" : 37.78825,
+          "longitude" : -122.4324
+      }
+    }
+   ]
+)

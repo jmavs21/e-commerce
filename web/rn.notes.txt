@@ -1,0 +1,815 @@
+React Native: a framework for building native apps using JS.
+Expo CLI: lives on top of React Native CLI and simplifies things.
+
+PART 1
+Getting sarted
+    Node version > 12
+    Install Expo: sudo npm i -g expo-cli
+    Download app to phone: Expo Client from Nametag
+    Install extensions for vscode:
+        React Native Tools from Microsoft
+        React-Native/React/Redux snippets from EQuimper
+        Prettier - Code formatter from Esben Petersen. Note: remember to activate on vscode settings: formatonsave
+        Material Icon Theme from Philipp Kief
+    Running on an iOS Simulator
+        expo init Ecommerce -> Command to create react-native project using expo project
+        npm start -> prepares app and starts Metro Bundler page.
+        Xcode -> Open Devloper Tool -> Simulator
+        On Metro Bundler click 'Run on iOS simulator' or enter 'i' on terminal
+        On simulator: ctrl+D cmd+D to open dev menu, on device shake it.
+    Running on an Android Emulator
+        ... watch it.
+    Running on a Device
+        open camera on device and scan the QR code to open it.
+    Debugging in Chrome
+        on simulator open dev menu and select 'Debug Remote JS'
+        opens a page where we can use chrome developer tools to debug.
+            select 'pause on exception' and enable 'pause on caugh exceptions'.
+        remember to stop debuggin on simulator.
+    Debugging in VSCode
+        on simulator open dev menu and select 'Debug Remote JS' and close opened page.
+        on debug view on vscode -> create launch.json file -> React Native -> Attach to packager -> 
+        vscode -> preferences -> settings -> on user tab search 'react-native.packager.port' -> change 8081 to 19001
+        reload simulator app (cmd+R)
+        remember to stop debuggin on simulator.
+    Publishing
+        on Metro Bundler -> 'Publish or republish project' -> 'Publish project' -> 'Make a new expo account' or login jmavs21/7RXxz!er3WCKyg7 -> open link
+    Fix auto import issue
+        jsconfig.json
+Fundamental Concepts:
+    Views: use SafeAreaView to place content on non-blocking areas.
+        Use style object to center: justifyContent: "center" and alignItems: "center"
+    Text: use numberOfLines prop to add... if more than x lines. https://reactnative.dev/docs/text
+    Image: 
+        from local: <Image source={require("./assets/icon.png")} />
+        from web:   <Image source={{width: 200, height: 300, uri: "https://picsum.photos/200/300"}} />
+    Touchables: if a component (i.e. image) doesn't have onPress or events to touch, they can be wrap in on of the touchable components.
+    Alert: you can use the alert function or api like: Alert.alert
+    StyleSheet: use with method create to validate style properties.
+    Platform-specific code: paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+Layout
+    Dimensions (DIP or percentages): <View style={{ backgroundColor: "dodgerblue", width: "50%", height: 70 }}></View>
+    Detecting Orientation Changes:
+        app.json
+            "orientation": "default"
+        npm i @react-native-community/hooks -> https://github.com/react-native-community/hooks
+        App.js
+            import { useDimensions } from "@react-native-community/hooks";
+            const { landscape } = useDeviceOrientation();
+            height: landscape ? "100%" : "30%"
+    Flexbox: remember that specific styles for position in a view are for the items 'inside' the view, in other words the position of a view/item is relative to parent. 
+        <View style={{ backgroundColor: "#fff", flex: 1 }}>
+            <View style={{ backgroundColor: "dodgerblue", flex: 2 }} />
+            <View style={{ backgroundColor: "gold", flex: 1 }} />
+            <View style={{ backgroundColor: "tomato", flex: 1 }} />
+        </View>
+        for flexDirection: inside content places items in 
+          "column" (default) the vertical   is 'primary/main axis'
+          "row"              the horizontal is 'cross/secondary axis'
+        for alignment: 
+            justifyContent: "flex-end" -> on primary axis and can also use "space-..."
+            alignItems: "center"       -> on secondary axis within each line
+            alignSelf: "flex-start"    -> for the individual item
+            flexWrap: "wrap"           -> on secondary axis
+            alignContent: "center"     -> entire content when wrap is used
+            flexBasis: 100             -> set size of element in primary axis (when row is width/horizontal)
+            flexGrow: 1                -> same as flex: 1, fits the space
+            flexShrink: 1              -> same as flex: -1, shrinks the space
+        Absolute/Relative: p
+            position: "relative" (default) changes position based on current position without changing layout around them.
+                top, bottom, left, right -> relatives moves from current to contrary to side.
+            position: "absolute" moves based on position of parent and changes layout around them.
+Styling
+    Borders: all below could apply to top, bottom, left, right. i.e. borderTopWidth: 20, borderTopLeftRadius: 50
+        borderWidth: 10            -> adds a border width
+        borderColor: "royalblue"   -> adds the border color
+        borderRadius: 10           -> can make the corners rounded, or if half of length of width makes a circle (width: 100, borderRadiius: 50)
+    Shadows: need to apply all first 3
+        for iOS:
+            shadowColor: "grey",
+            shadowOffset: { width: 10, height: 10 }, 
+            shadowOpacity: 1,
+            shadowRadius: 10
+        for android: 
+            elevation: 20
+    Paddings and Margins: padding is space inside component while margin is space around it.
+        padding: 20  -> has also top, left, horizontal, etc
+        margin: 20   -> has also top, left, horizontal, etc
+    Styling Text: if interested in custom fonts check: https://docs.expo.io/guides/using-custom-fonts/
+        fontSize: 30
+        fontFamily: "Courier" -> check more on: https://github.com/react-native-training/react-native-fonts
+        fontStyle: "italic",
+        fontWeight: "bold",
+        color: "tomato",
+        textTransform: "capitalize",
+        textDecorationLine: "underline",
+        textAlign: "justify",
+        lineHeight: 30
+    Encapsulating Styles: i.e. create AppText, Heading, etc components to apply same text style.
+    Icons: check: https://icons.expo.fyi/
+        import { MaterialCommunityIcons } from "@expo/vector-icons";
+        <MaterialCommunityIcons name="email" size={200} color="dodgerblue" />
+    Platform-specific Code:
+        using AppText with code select:
+            text: {
+                color: "tomato",
+                ...Platform.select({
+                    ios: {
+                        fontSize: 20,
+                        fontFamily: "Avenir"
+                    },
+                    android: {
+                        fontSize: 18,
+                        fontFamily: "Roboto"
+                    }
+                })
+             }
+        or can create AppText.ios.js, AppText.android.js without code select:
+        Note: when using AppText we content between tags as children props.
+            import React from "react";
+            import { Text, StyleSheet } from "react-native";
+            function AppText({ children }) {
+                return <Text style={styles.text}>{children}</Text>;
+            }
+            const styles = StyleSheet.create({
+                text: {
+                    color: "tomato",
+                    fontSize: 20,
+                    fontFamily: "Avenir"
+                }
+            });
+            export default AppText;
+    Organizing Styles: i.e. can create a folder for AppText and there put the component and styles separated.
+    UI Libraries: 
+        React Native Elements (My Recommendation): https://react-native-elements.github.io/react-native-elements/
+        React Native Paper: https://callstack.github.io/react-native-paper/
+        Native Base: https://nativebase.io/
+Lists
+    FlatList -> from react native to create a list of ListItem
+        ItemSeparatorComponent -> prop to pass component to separate list items.
+        npm i expo-constants -> helps on iOS/android safe area view: import Constants from "expo-constants"; paddingTop: Constants.statusBarHeight
+        components/Screen -> content (FlatList> inside Screen tags is pass as children prop to Screen.
+        TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback -> when we wrap something these we make them touchable and handle event by passing callback to onPress prop.
+    Swipes:
+        React Native Gesture Handler: library doc -> https://docs.swmansion.com/react-native-gesture-handler/docs/getting-started.html
+            expo install react-native-gesture-handler -> library for gestures and installed using expo (instead of npm) so that is compatible with versions we are using. 
+            ListItem.js
+                import Swipeable from "react-native-gesture-handler/Swipeable";
+                Swipeable -> component from library that have actions like: renderRightActions where we use the ListItemDeleteAction component to delete something.
+                    ListItemDeleteAction -> component with trash can when swapping left
+        Adding state to delete message in MessagesScreen:
+            function MessagesScreen(props) {
+                const [messages, setMessages] = useState(initialMessages);
+                const [refreshing, setRefreshing] = useState(false);
+                const handleDelete = (message) => {
+                    setMessages(messages.filter((m) => m.id !== message.id));
+                };
+    Pull to Refresh:
+        In FlatList add props:
+            refreshing={refreshing}
+            onRefresh={() => {...}}
+    Icons.js -> reusable component for displaying icons.
+    Conditional rendering: {image && <Image style={styles.image} source={image} />}
+Input Components
+    TextInput from react-native:
+        const [firstName, setFirstName] = useState("");
+        <TextInput
+            secureTextEntry={true}
+            clearButtonMode="always"
+            keyboardType="numeric"
+            maxLength={5}
+            onChangeText={(text) => setFirstName(text)}
+            placeholder="First Name"
+            style={{ borderBottomColor: "#ccc", borderBottomWidth: 1 }}
+        />
+    AppTextInput.js:
+        Example of how to pass "otherProps":
+            App.js
+                <AppTextInput placeholder="Username" icon="email" />
+            AppTextInput.js
+                function AppTextInput({ icon, ...otherProps }) {
+                    return (
+                        <View style={styles.container}>
+                            {icon && <MaterialCommunityIcons name={icon} />}
+                            <TextInput style={styles.textInput} {...otherProps} />
+                        </View>
+                    );
+                }
+        Added default styles for text and also colors pallet:
+            import defaultStyles from "../config/styles";
+            <TextInput style={defaultStyles.text} {...otherProps} />
+    Switch from react-native:
+        App.js
+            export default function App() {
+                const [isNew, setIsNew] = useState(false);
+                    return (
+                        <Screen>
+                            <Switch value={isNew} onValueChange={(newValue) => setIsNew(newValue)} />
+                        </Screen>
+                    );
+                }
+    AppPicker.js -> custom Picker
+        Modal -> when picker is clicked the modal appears with an animation.
+        PickerItem.js
+Forms
+    LoginScreen.js -> uses as parent the Screen.js and adds an Image, AppTextInput.js and AppButton.js
+        function LoginScreen(props) {
+            const [email, setEmail] = useState();
+            const [password, setPassword] = useState();
+            return (
+                <Screen style={styles.container}>
+                    <Image style={styles.logo} source={require("../assets/logo-red.png")} />
+                    <AppTextInput
+                        ...
+                        onChangeText={(text) => setEmail(text)}
+                    />
+                    <AppTextInput
+                        ...
+                        onChangeText={(text) => setPassword(text)}
+                    />
+                    <AppButton title="Login" onPress={() => console.log(email, password)} />
+                </Screen>
+            );
+            }
+    Formik -> library for building forms: https://jaredpalmer.com/formik/
+    Yup -> library for form validation: https://www.npmjs.com/package/yup
+        npm i formik@2.1.4
+        npm i yup
+        LoginScreen.js
+            import { Formik } from "formik";
+            import * as Yup from "yup";
+            const validationSchema = Yup.object().shape({
+                email: Yup.string().required().email().label("Email"),
+                password: Yup.string().required().min(4).label("Password")
+            });
+            function LoginScreen(props) {
+                return (
+                    <Screen style={styles.container}>
+                    <Image style={styles.logo} source={require("../assets/logo-red.png")} />
+                    <Formik
+                        initialValues={{ email: "", password: "" }}
+                        onSubmit={(values) => console.log(values)}
+                        validationSchema={validationSchema}
+                    >
+                        {({ handleChange, handleSubmit, errors }) => (
+                        <>
+                            <AppTextInput
+                                ...
+                                onChangeText={handleChange("email")}
+                            />
+                            <AppText style={{ color: "red" }}>{errors.email}</AppText>
+                            <AppTextInput
+                                ...
+                                onChangeText={handleChange("password")}
+                            />
+                            <AppText style={{ color: "red" }}>{errors.password}</AppText>
+                            <AppButton title="Login" onPress={handleSubmit} />
+                        </>
+                        )}
+                    </Formik>
+                    </Screen>
+                );
+            }
+    AppFormField.js -> component that includes AppTextInput.js, ErrorMessage.js, onBlur validation.
+    SubmitButton.js -> component that includes AppButton.js and handles onSubmit from fornik.  
+    AppForm.js      -> component that includes a Fornik form as children.
+    forms/index.js
+        Export all form using index.js to import all and then export as an object:
+            import AppForm from "./AppForm";
+            import AppFormField from "./AppFormField";
+            export { AppForm, AppFormField };
+        Or we can do it in-line:
+            export { default as AppForm} from "./AppForm";
+            export { default as AppFormField} from "./AppFormField";
+            export { default as ErrorMessage} from "./ErrorMessage";
+            export { default as SubmitButton} from "./SubmitButton";
+        Use it like this:
+            import {AppForm, AppFormField, SubmitButton} from "../components/forms";
+Additional Improvements
+    Custom Snippets: rnfc
+        VSCODE -> Code -> Preferences -> User Snippets -> javascript
+            ~/Library/Application Support/Code/User/snippets/javascript.json
+
+PART 2
+Native Features
+    using expo: https://docs.expo.io/versions/latest/
+    ImagePicker: https://docs.expo.io/versions/v37.0.0/sdk/imagepicker/
+        expo install expo-image-picker
+        ComponentDidMount -> using funtional components (empty array) -> can return a funtion to do clean up (ComponentDidUnmount)
+            useEffect(() => {}, [])
+        To get permissions: Note that useEffect calls function because can't use async inside.
+            const requestPermission = async () => {
+                const { granted } = await ImagePicker.requestCameraRollPermissionsAsync();
+                if (!granted) alert("You need to enable permission to access the library.");
+            };
+            useEffect(() => {
+                requestPermission();
+            }, []);
+        Permissions module:
+            expo install expo-permissions
+            import * as Permissions from "expo-permissions";
+            const result = await Permissions.askAsync(Permissions.CAMERA_ROLL, Permissions.LOCATION);
+    Note: if you have overflow, meaning for example a container with round corners, and with and image a little larger the round corners disappear, you need to add to the continer:
+        overflow: "hidden"
+    ScrollView 
+        component from react-native to add vertical (default) or horizontal scrolling.
+        useRef from react to hook into the components functions.
+        use View as parent component to define to only use enough space by children (without parent View the components filled all space).
+            import React, { useRef } from "react";
+            const scrollView = useRef();
+            return (
+                <View>
+                    <ScrollView
+                        ref={scrollView}
+                        horizontal
+                        onContentSizeChange={() => scrollView.current.scrollToEnd()}
+                    >
+                </View>
+    Use Formik context:
+        import { useFormikContext } from "formik";
+        const { errors, setFieldValue, touched, values } = useFormikContext();
+    User's Location:
+        Simulator -> Features -> Location -> Apple
+        expo install expo-location
+        import * as Location from "expo-location";
+        function ListingEditScreen() {
+            const [location, setLocation] = useState();
+
+            const getLocation = async () => {
+                const { granted } = await Location.requestPermissionsAsync();
+                if (!granted) return;
+                const {
+                    coords: { latitude, longitude }
+                } = await Location.getLastKnownPositionAsync();
+                setLocation({ latitude, longitude });
+            };
+
+            useEffect(() => {
+                getLocation();
+            }, []);
+    Custom Hooks:
+        app/hooks/useLocation.js
+            import { useEffect, useState } from "react";
+            import * as Location from "expo-location";
+            export default useLocation = () => {
+                const [location, setLocation] = useState();
+                const getLocation = async () => {
+                    try {
+                        const { granted } = await Location.requestPermissionsAsync();
+                        if (!granted) return;
+                        const {
+                            coords: { latitude, longitude }
+                        } = await Location.getLastKnownPositionAsync();
+                        setLocation({ latitude, longitude });
+                    } catch (error) {
+                        console.log(error);
+                    }
+                };
+                useEffect(() => {
+                    getLocation();
+                }, []);
+                return location;
+            };
+        ListingEditScreen.js
+            import useLocation from "../hooks/useLocation";
+            function ListingEditScreen() {
+                const location = useLocation();
+Navigation
+    React Navitaion library: https://reactnavigation.org/
+    npm install @react-navigation/native@5
+    expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+    Nativator Types:
+        Stack: take user from one screen to another (similar to web browsers)
+        Tab: uses taps
+        Drawer: menu pulled from left part of sceen
+    Stack Naviator:
+        npm install @react-navigation/stack
+        AuthNavigator.js -> example
+    Tab Navigator:
+        npm install @react-navigation/bottom-tabs
+        AppNavigator.js -> example
+    StackTabStuff.js -> example code
+Networking
+    Backend used: /Users/joaquin/0code/react-native/Backend/b.notes
+    Calling API's using ApiSauce, usefull because promises alwasys resolved (no need to trycatch): https://github.com/infinitered/apisauce
+        npm i apisauce
+        /app/api
+    Get data from Server
+        ListingsScreen.js
+            import listingsApi from "../api/listings";
+            const [listings, setListings] = useState([]);
+            useEffect(() => {
+                loadListings();
+            }, []);
+            const loadListings = async () => {
+                const response = await listingsApi.getListings();
+                setListings(response.data);
+            };
+    react-native-debugger app (RND): https://github.com/jhen0409/react-native-debugger
+        Install app in MAC OS with command: brew update && brew cask install react-native-debugger
+        Open app name: "React Native Debugger"
+        RND -> Toggle window with right click.
+        RND -> Debugger -> New Window -> 19001
+        Simulator -> ctrl+D cmd+D -> Debug Remote JS
+        RND -> right clik -> Enable Network Inspect
+            Network tab and filter by XHR
+        Simutlator -> ctrl+D cmd+D -> Stop Remote Debugging
+    Handling Errors
+        ListingsScreen.js
+            const [error, setError] = useState(false);
+            const loadListings = async () => {
+                const response = await listingsApi.getListings();
+                if (!response.ok) return setError(true);
+                setError(false);
+                setListings(response.data);
+            };
+            return (
+                <Screen style={styles.screen}>
+                {error && (
+                    <>
+                        <AppText>Couldn't retrieve the listings.</AppText>
+                        <Button title="Retry" onPress={loadListings} />
+                    </>
+                )}
+                ...
+    Simulating a Slow Connection
+        RND -> Network tab -> Online -> Slow 3G or Add...
+            Network Throttling Profiles -> download/upload/latency
+    Loading Indicator using ActivityIndicator from react-native
+        ListingsScreen.js
+            const [loading, setLoading] = useState(false);
+            const loadListings = async () => {
+                setLoading(true);
+                const response = await listingsApi.getListings();
+                setLoading(false);
+                ...
+            <ActivityIndicator animating={loading} size="large" />
+    Beutiful Animations using 'Lottie' library: 
+        Free Lotties animations: https://lottiefiles.com/
+        expo install lottie-react-native
+        ActivityIndicator.js
+    Reusable Hook for getting data from server (managing error and show loading animation)
+        With hooks we can encapsulate state and logic on that state as a reusable function
+        hooks/useApi.js
+    Extending API Layer
+        When sending images/files to server have to set header 'content-type' to 'multipart/form-data'
+        new FormData() of ApiSauce automatically sets headers to multipart.
+            listings.js -> check addListing function.
+            ListingEditScreen.js -> check handleSubmit function
+    Tracking the Upload Progress
+        If parent needs to call child, in react the parent sends a function (callback with params) to the child and the child calls the function to raise as event.
+            ListingEditScreen.js
+                const handleSubmit = async (listing) => {
+                    const result = await listingsApi.addListing(
+                        { ...listing, location },
+                        (progress) => console.log(progress)
+                    );
+                    ...
+            listing.js
+                return client.post(endpoint, data, {
+                    onUploadProgress: (progress) => onUploadProgress(progress.loaded / progress.total)
+                });
+    Progress Bar using react-native-progress library: https://github.com/oblador/react-native-progress
+        npm install react-native-progress
+        UploadScreen.js
+            import * as Progress from "react-native-progress";
+            <Progress.Bar color={colors.primary} progress={progress} width={200} />
+            ...
+        ListingEditScreen.js
+            <UploadScreen
+                onDone={() => setUploadVisible(false)}
+                progress={progress}
+                visible={uploadVisible}
+            />
+            ...
+    Apps.js
+        import React from "react";
+        import { NavigationContainer } from "@react-navigation/native";
+        import AuthNavigator from "./app/navigation/AuthNavigator";
+        import navigationTheme from "./app/navigation/navigationTheme";
+        import AppNavigator from "./app/navigation/AppNavigator";
+        export default function App() {
+            return (
+                <NavigationContainer theme={navigationTheme}>
+                <AppNavigator />
+                </NavigationContainer>
+            );
+        }
+
+Offline Support
+    Strategies:
+        Notify the user
+        Disable features
+        Cache data
+        Store usear actions until becomes online again
+    Detecting Network Status
+        NetInfo expo library: https://docs.expo.io/versions/latest/sdk/netinfo/
+        expo install @react-native-community/netinfo
+        Example:
+            App.js
+                import NetInfo, { useNetInfo } from "@react-native-community/netinfo";
+                return netInfo.isInternetReachable ? (<Text>Online</Text>) : (<Text>Offline</Text>); // <Button disabled={!netInfo.isInternetReachable} />
+    Caching (all mantain data after apps restart, but not in uninstall of apps)
+        SecureStore: encrypted with max 2MB
+        SQLite: lightway SQL DB
+        AsyncStorage: like local storage in web browsers, stores a map of key/values (serialize strings) and is not encrypted, with max default of 6MB.
+            App.js
+                import { AsyncStorage } from "react-native";
+                export default function App() {
+                    const demo = async () => {
+                        try {
+                            await AsyncStorage.setItem("person", JSON.stringify({ id: 1 }));
+                            const value = await AsyncStorage.getItem("person");
+                            const person = JSON.parse(value);
+                            console.log(person);
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    };
+                    demo();
+                    return null;
+                }
+            Inspecting AsyncStorage
+                On RND -> console -> write: showAsyncStorageContentInDev()
+                also on console have access to AsyncStorage methods: $reactNative.AsyncStorage
+        Cache Layer
+            1) Serialize/deserialize (stringify, parse)
+            2) Apply timestamp
+            3) Remove expired items
+            npm i moment
+            app/utility/cache.js -> check
+            app/api/client.js -> check
+            Cache images
+                'FastImage' library (not supported by expo yet): https://github.com/DylanVann/react-native-fast-image
+                'react-native-expo-image-cache' library https://github.com/wcandillon/react-native-expo-image-cache
+                    npm i react-native-expo-image-cache
+                    expo install expo-blur
+                    Card.js -> check
+                        import { Image } from "react-native-expo-image-cache";
+                        <Image style={styles.image} tint="light" preview={{ uri: thumbnailUrl }} uri={imageUrl} />
+                cludinary.com can be use to upload images and also get thumbnails
+            Can also use Redux with redux-persist as cache but adds complexity (redux is usefull for sharing large objects that change frequently)
+        Store User Actions
+            client.js
+                apiClient.post/put/delete... other methods that if call to server fails, we store the request on cache and retry later.
+                Complexity:
+                    Optimistic updates
+                    Retrying actions
+                    Conflict resolution
+                So better options:
+                    Using firebase.google.com with expo as it will handle offline mode.
+                    Using realm.io as client-side DB to sync data with offline mode.
+        Showing an Offline Notice
+            app/components/OfflineNotice.js -> check
+Authentication and Authorization
+    Authentication Providers:
+        Amplify by Amazon
+        Firebase by Google
+        Auth0
+    Authentication Flow
+        user -> POST/auth -> server (returns authToken to user) // authToken includes some user data
+            we store authToken in App component as user state with react-context (which is usefull for sharing small objects that don't change often)
+                if user exists we display AppNavigator, otherwise we display AuthNavigator
+                    Account will have access to user state via react-context
+        Auhtentication API
+            Postman -> POST/auth -> body -> { "email": "mosh@domain.com", "password": "12345" }
+            app/api/auth.js -> has login function
+            LoginScreen.js -> when submit email/password calls login from auth.js -> look at loginFailed, handleSubmit method and ErrorMessage.
+            Remember that jwt token (authToken) is generated by the server using private key and that it verifes the jwt send by client by checking the signed part.
+        Extract User from authToken
+            npm i jwt-decode
+            LoginScreen.js -> look at jwtDecode in handleSubmit.
+        Storing the Current User (using react's context)
+            app/auth/context.js
+                import React from "react";
+                const AuthContext = React.createContext();
+                export default AuthContext;
+            App.js
+                import AuthContext from "./app/auth/contex";
+                export default function App() {
+                    const [user, setUser] = useState();
+                    return (
+                        <AuthContext.Provider value={{ user, setUser }}>
+                            <OfflineNotice />
+                            <NavigationContainer theme={navigationTheme}>
+                                {user ? <AppNavigator /> : <AuthNavigator />}
+                            </NavigationContainer>
+                        </AuthContext.Provider>
+                    );
+                }
+            LoginScreen.js
+                import React, { useState, useContext } from "react";
+                const authContext = useContext(AuthContext);
+                authContext.setUser(user); // inside handleSubmit function
+    Getting the Current User
+        AccountScreen.js
+            const { user, setUser } = useContext(AuthContext);
+    Logging Out the User
+        AccountScreen.js
+            onPress={() => setUser(null)} // on logout ListItem
+    Fix Persisting Authentication State Across Restarts
+        expo install expo-secure-store
+        app/auth/storage.js -> see storeToken, getToken and removeToken functions
+        LoginScreen.js
+            import authStorage from "../auth/storage";
+            authStorage.storeToken(result.data); // inside handleSubmit function
+        App.js
+            import { AppLoading } from "expo";
+            import jwtDecode from "jwt-decode";
+            const [isReady, setIsReady] = useState(false);
+            const restoreToken = async () => {
+                const token = await authStorage.getToken();
+                if (!token) return;
+                setUser(jwtDecode(token));
+            };
+            if (!isReady)
+                return (
+                    <AppLoading startAsync={restoreToken} onFinish={() => setIsReady(true)} />
+                );
+        AccountScreen.js
+            const handleLogOut = () => {
+                setUser(null);
+                authStorage.removeToken();
+            };
+            onPress={handleLogOut} // on logout ListItem
+        app.json
+            "splash": {
+                "image": "./app/assets/splash.png",
+                "resizeMode": "cover",
+                "backgroundColor": "e63c4b"
+            }
+    Calling Protected API's
+        client.js
+            import authStorage from "../auth/storage";
+            apiClient.addAsyncRequestTransform(async (request) => {
+                const authToken = await authStorage.getToken();
+                if (!authToken) return;
+                request.headers["x-auth-token"] = authToken;
+            });
+    Registration Impl
+        app/api/users.js // POST/users
+        RegisterScreen.js
+Notifications
+    Push Notifications Services Providers:
+        Expo's Push Notifications Service
+        One Signal
+        Firebase Cloud Messaging
+        Amazon's Simple Notification Servie (SNS)
+    Expo's Push Notifications Service
+        Stpes:
+            Register the app with Expo to get a push notification token (one token for installed app)
+            Store the token on DB on the server
+                Users: id, name, email, pushNotificationToken
+            Sends notification to a user from server
+            Handle received notifications
+        Getting a Push Notification Token
+            AppNavigator.js
+                import { Notifications } from "expo";
+                import * as Permissions from "expo-permissions";
+                useEffect(() => {
+                    registerForPushNotifications();
+                }, []);
+            const registerForPushNotifications = async () => {
+                try {
+                    const permission = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+                    if (!permission.granted) return;
+                    const token = await Notifications.getExpoPushTokenAsync();
+                    console.log("token", token);
+                } catch (error) {
+                    console.log("Error getting a push token", error);
+                }
+            };
+        Storing the Push Notification Token
+            Server endpoint (could be and update operation for Users collections): 
+                POST/http://localhost:9000/api/expoPushTokens
+                    headers: x-auth-token / eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJNb3NoIiwiZW1haWwiOiJtb3NoQGRvbWFpbi5jb20iLCJpYXQiOjE1OTI4NTE3MjB9.sgoZObqOJ5XO8Zu4yJ9AByFAA6byu1l89cGaQsO2mmw
+                    body: { "token": "ExponentPushToken[omIy6lOpIr1v-7e1BJsmn1]" }
+            app/api/expoPushTokens.js
+                import apiClient from "./client";
+                const register = (pushToken) =>
+                    apiClient.post("/expoPushTokens", { token: pushToken });
+                export default { register };
+            AppNavigator.js
+                import expoPushTokenApi from "../api/expoPushTokens";
+                expoPushTokenApi.register(token); // inside registerForPushNotifications function
+        Sending Test Notifications: 
+            go to: https://expo.io/notifications
+            fill form using token and send.
+        Sending Notifications on the Server
+            doc (node, java, etc): https://docs.expo.io/guides/push-notifications/
+        Handling Received Notifications
+            AppNavigator.js
+                Notifications.addListener((notification) => console.log(notification)); // register listener when user taps on notifications
+        Navigation Upon Receiving a Notification
+            app/navigation/rootNavigation.js
+                import React from "react";
+                export const navigationRef = React.createRef();
+                const navigate = (name, params) => navigationRef.current?.navigate(name, params);
+                export default {
+                    navigate
+                };
+            AppNavigator.js
+                import navigation from "./rootNavigation";
+                Notifications.addListener((notification) => {
+                    navigation.navigate(routes.ACCOUNT);
+                });
+        Creating Custom Hook
+            app/hooks/useNotfications.js
+        Local Notifications
+            App.js // can also use presentLocalNotificationAsync without time param
+                import { Notifications } from "expo";
+                const showNotification = () => {
+                    Notifications.scheduleLocalNotificationAsync({
+                            title: "Congratulations",
+                            body: "Your order was successfully placed!"
+                        },
+                        { time: new Date().getTime() + 2000 }
+                    );
+                };
+                return (<Screen><Button title="Tap me" onPress={showNotification} /></Screen>);
+            app.json
+                "notification": { "iosDisplayInForeground": true }
+Distribution
+    App Icon: assests/icon.png, 1024x1024, no round corners
+        Apple icon guidelines: https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon/
+    Optimizing Assets
+        remove images that are no longer needed (downloaded from internet)
+        npm i -g sharp-cli   -> library for reducing size of images
+        npx expo-optimize    -> to reduce image size without reducing quality
+    Optimizing JS Bundle
+        remove libraries that are not use or use frequently on your code (i.e. moment) or install a more lightweight one.
+        npm i dayjs   -> library to get diff, alternative to moment
+        VSCode: install extension 'Import Cost' from Wix
+        also remember that you can import packages like: import uniqueId from 'lodash/uniqueId';
+        npm un moment -> uninstall moment library
+    Error Reporting
+        Error reporting tools:
+            Sentry
+            Bugsnag: report errors, attach dianostic data, identify users, monitor releases (doc: https://docs.bugsnag.com/platforms/react-native/expo/)
+                go to website: https://www.bugsnag.com/
+                    sign up
+                    follow create project steps
+                        npx bugsnag-expo-cli init -> follow instructions and provide bugsnag api, say yes.
+               app/utility/logger.js -> bug/error reporting abstraction
+                    import Bugsnag from "@bugsnag/expo";
+                    const log = (error) => Bugsnag.notify(error);
+                    const start = () => Bugsnag.start();
+                    export default { log, start };
+                App.js
+                    import logger from "./app/utility/logger";
+                    logger.start();
+                go to dashboard on bugsnag: https://app.bugsnag.com/
+                in code replace every: console.log with logger.log
+    Environment Management
+        app/config/settings.js -> exports and object with apiUrl, etc.
+        app/api/client.js -> 
+            import settings from "../config/settings";
+            const apiClient = create({
+                baseURL: settings.apiUrl
+            });
+    Publishing
+        Publishing on expo (for development or showing demo)
+            expo publish --release-channel staging      -> to publish to expo: https://expo.io/@jmavs21/Ecommerce?release-channel=staging
+            app.json -> can change to make publish website private (default public)
+                "privacy": "unlisted"
+    Building Standalone Apps (using expo)
+        enroll: https://developer.apple.com/programs/enroll/
+            takes 1/2 days, providing personal information, etc
+            costs $99/year for updates
+        app.json
+            on ios property
+                "bundleIdentifier": "com.jmavs.Ecommerce",
+                "buildNumber": "1.0.0"
+        expo build:ios   -> command to build for ios (follow instructions)
+            at the end creates a .ipa file
+    Distribugin to the App Store
+        go and login to: appstoreconnect.apple.com
+            My Apps -> New app -> complete form
+        install Transporter app from app store on MAC OS
+            upload .ipa file using Transporter
+                more stuff (review lesson)
+    Building the Android App (lesson)
+    Over-the-air updates
+        great for fast updates
+    Additional Resources
+        expo distribution doc: https://docs.expo.io/distribution/introduction/
+        automate app deployment using FastLane: https://fastlane.tools/
+            blog post on how to use it: https://blog.expo.io/automating-standalone-expo-app-builds-and-deployments-with-fastlane-exp-and-exptool-9b2f5ad0a2cd
+    
+
+    
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+                

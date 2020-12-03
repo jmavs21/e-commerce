@@ -1,0 +1,31 @@
+db.getCollection('users').insert(
+  [
+    {
+      "_id" : ObjectId("5ef50c1a322399599e3b416a"),
+      "name" : "Bob",
+      "email" : "bob@mail.com",
+      "password" : "bob",
+      "isAdmin" : false,
+      "expoPushToken" : "ExponentPushToken[omIy6lOpIr1v-7e1BJsmn1]",
+      "_class" : "com.ecommerce.model.User"
+    },
+    {
+      "_id" : ObjectId("5ef50c2a322399599e3b416f"),
+      "name" : "John",
+      "email" : "john@mail.com",
+      "password" : "john",
+      "isAdmin" : false,
+      "expoPushToken" : "ExponentPushToken[omIy6lOpIr1v-7e1BJsmn1]",
+      "_class" : "com.ecommerce.model.User"
+    },
+    {
+      "_id" : ObjectId("5f04df725828ce144a4eda5d"),
+      "name" : "Larry",
+      "email" : "larry@mail.com",
+      "password" : "$2a$10$JIiapbAseb5CwCmteDRxkueuDTYlesFAaKbrKHXfYmDqD/dFK2m.y",
+      "isAdmin" : false,
+      "expoPushToken" : "",
+      "_class" : "com.ecommerce.model.User"
+    }
+  ]
+)
