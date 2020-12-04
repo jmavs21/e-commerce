@@ -17,7 +17,6 @@ apiClient.addAsyncRequestTransform(async (request) => {
 const get = apiClient.get;
 
 apiClient.get = async (url, params, axiosConfig) => {
-  // Note: not using cache right now.
   const response = await get(url, params, axiosConfig);
   if (response.ok) {
     cache.store(url, response.data);

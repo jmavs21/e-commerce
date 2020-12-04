@@ -1,12 +1,21 @@
-# Web
+## Web
 
-A React Native project.
+### Technologies used
 
-## Requirements
+- JavaScript
+- React Native
+- Expo
+- Formik
+- Apisauce
+- JWT decode
+- Yup
+- Lottie for React Native
 
-- Download and install [Node.js](https://nodejs.org/en/) version > 12
+### Requirements
 
-- Install Expo:
+- Download and install [Node.js](https://nodejs.org/en/) version >= 12
+
+- Install Expo
 
   ```sh
   sudo npm i -g expo-cli
@@ -14,21 +23,28 @@ A React Native project.
 
 - MacOS with Xcode installed.
 
-## Build project
+### Installation
+
+- Go into project
+
+```sh
+cd /web
+```
+
+- Build
 
 ```sh
 npm i
 ```
 
-## Run application
+- Run
 
 ```sh
 npm start
 ```
 
-**Run on iOS simulator**
-
 - Open iOS simulator: Xcode -> Open Devloper Tool -> Simulator
-- Enter 'i' on terminal.
+
+- Select 'Run on iOS simulator' on Expo Developer Tools.
 
 **Reference**: This [React Native Course](https://codewithmosh.com/p/the-ultimate-react-native-course)

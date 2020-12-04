@@ -43,7 +43,6 @@ function AppPicker({
           ) : (
             <Text style={styles.placeholder}>{placeholder}</Text>
           )}
-
           <MaterialCommunityIcons
             name="chevron-down"
             size={20}

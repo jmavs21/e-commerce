@@ -1,10 +1,9 @@
-import React from "react";
-import { View, StyleSheet, Image, TouchableHighlight } from "react-native";
-import Swipeable from "react-native-gesture-handler/Swipeable";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-
-import Text from "../Text";
-import defaultStyles from "../../config/styles";
+import React from 'react';
+import { View, StyleSheet, Image, TouchableHighlight } from 'react-native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Text from '../Text';
+import defaultStyles from '../../config/styles';
 
 function ListItem({
   title,
@@ -12,7 +11,7 @@ function ListItem({
   image,
   IconComponent,
   onPress,
-  renderRightActions
+  renderRightActions,
 }) {
   return (
     <Swipeable renderRightActions={renderRightActions}>
@@ -46,27 +45,27 @@ function ListItem({
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    flexDirection: "row",
+    alignItems: 'center',
+    flexDirection: 'row',
     padding: 15,
-    backgroundColor: defaultStyles.colors.white
+    backgroundColor: defaultStyles.colors.white,
   },
   detailContainer: {
     flex: 1,
     marginLeft: 10,
-    justifyContent: "center"
+    justifyContent: 'center',
   },
   image: {
-    width: 70,
-    height: 70,
-    borderRadius: 35
+    width: 40,
+    height: 40,
+    borderRadius: 35,
   },
   subTitle: {
-    color: defaultStyles.colors.medium
+    color: defaultStyles.colors.medium,
   },
   title: {
-    fontWeight: "500"
-  }
+    fontWeight: '500',
+  },
 });
 
 export default ListItem;

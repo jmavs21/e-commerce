@@ -4,15 +4,16 @@ An application to buy and sell stuff.
 
 **Example**
 
-![](flow.gif)
+![](example.gif)
 
 ## Features
 
 - Register a new user
 - Login and logout with JWT
-- View of list of items.
-- Send and delete messages to other users.
-- Create and delete your items.
+- Stack and tab screen navigation
+- Offline notice with cache of API get calls
+- Notification message
+- View, create and delete listings
 
 ## Technologies used
 
@@ -26,14 +27,15 @@ An application to buy and sell stuff.
 
 - Java
 - Spring Boot
+- MongoDB
 
-## Installation and usage instructions
+## Installation
 
 - Clone repo
 
 ```sh
-git clone https://github.com/jmavs21/ecommerce.git
+git clone https://github.com/jmavs21/e-commerce.git
 ```
 
-- Continue for [WEB](https://github.com/jmavs21/ecommerce/tree/master/web)
-- Continue for [API](https://github.com/jmavs21/ecommerce/tree/master/api)
+- Continue for [Web](https://github.com/jmavs21/e-commerce/tree/master/web)
+- Continue for [Api](https://github.com/jmavs21/e-commerce/tree/master/api)

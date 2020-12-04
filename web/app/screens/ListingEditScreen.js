@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
-
 import {
   AppForm as Form,
   AppFormField as FormField,
-  AppFormPicker as Picker,
+  AppFormPicker as FormPicker,
   SubmitButton,
 } from '../components/forms';
 import Screen from '../components/Screen';
@@ -26,7 +25,7 @@ const validationSchema = Yup.object().shape({
 });
 
 function ListingEditScreen() {
-  const { data: categories, error, loading, request: loadCategories } = useApi(
+  const { data: categories, request: loadCategories } = useApi(
     categoriesApi.getCategories
   );
 
@@ -81,7 +80,7 @@ function ListingEditScreen() {
           placeholder="Price"
           width={120}
         />
-        <Picker
+        <FormPicker
           items={categories}
           name="category"
           numberOfColumns={3}

@@ -1,23 +1,6 @@
 db.getCollection('listings').insert(
    [
     {
-      "_id" : ObjectId("5ef65849bd8ad9e79c559d67"),
-      "title" : "Leather jacket",
-      "description" : "DM me for more details.",
-      "images" : [ 
-          {
-              "fileName" : "jacket"
-          }
-      ],
-      "price" : 100.0,
-      "categoryId" : "5ef5190f322399599e3b42e9",
-      "userId" : "5ef50c1a322399599e3b416a",
-      "location" : {
-          "latitude" : 37.78825,
-          "longitude" : -122.4324
-      }
-    },
-    {
       "_id" : ObjectId("5ef658d1bd8ad9e79c559d85"),
       "title" : "Bar stool",
       "description" : "With a discount price.",
@@ -27,7 +10,7 @@ db.getCollection('listings').insert(
           }
       ],
       "categoryId" : "5ef518f4322399599e3b42d5",
-      "price" : 1200.0,
+      "price" : 35.0,
       "userId" : "5ef50c2a322399599e3b416f",
       "location" : {
           "latitude" : 37.78825,
@@ -61,7 +44,7 @@ db.getCollection('listings').insert(
           }
       ],
       "categoryId" : "5ef5190f322399599e3b42e9",
-      "price" : 100.0,
+      "price" : 15.0,
       "userId" : "5ef50c2a322399599e3b416f",
       "location" : {
           "latitude" : 37.78825,
@@ -77,7 +60,7 @@ db.getCollection('listings').insert(
               "fileName" : "camera"
           }
       ],
-      "price" : 300.0,
+      "price" : 150.0,
       "categoryId" : "5ef51903322399599e3b42dd",
       "userId" : "5ef50c1a322399599e3b416a",
       "location" : {
@@ -94,7 +77,7 @@ db.getCollection('listings').insert(
               "fileName" : "tv"
           }
       ],
-      "price" : 350.0,
+      "price" : 10.0,
       "categoryId" : "5ef51903322399599e3b42dd",
       "userId" : "5ef50c1a322399599e3b416a",
       "location" : {
@@ -112,7 +95,7 @@ db.getCollection('listings').insert(
           }
       ],
       "categoryId" : "5ef518f4322399599e3b42d5",
-      "price" : 950.0,
+      "price" : 250.0,
       "userId" : "5ef50c2a322399599e3b416f",
       "location" : {
           "latitude" : 37.78825,
@@ -129,7 +112,7 @@ db.getCollection('listings').insert(
           }
       ],
       "categoryId" : "5ef5190f322399599e3b42e9",
-      "price" : 50.0,
+      "price" : 300.0,
       "userId" : "5ef50c2a322399599e3b416f",
       "location" : {
           "latitude" : 37.78825,

@@ -1,30 +1,6 @@
 db.getCollection('messages').insert(
   [
     {
-      "_id" : ObjectId("5ef665a0bd8ad9e79c55a06b"),
-      "listingId" : "5ef65849bd8ad9e79c559d67",
-      "dateTime" : NumberLong(1586044521956),
-      "content" : "Is this still available?",
-      "fromUserId" : "5ef50c2a322399599e3b416f",
-      "toUserId" : "5ef50c1a322399599e3b416a"
-    },
-    {
-      "_id" : ObjectId("5ef665c6bd8ad9e79c55a07e"),
-      "listingId" : "5ef65849bd8ad9e79c559d67",
-      "dateTime" : NumberLong(1586044521956),
-      "content" : "Do you provide free delivery?",
-      "fromUserId" : "5ef50c2a322399599e3b416f",
-      "toUserId" : "5ef50c1a322399599e3b416a"
-    },
-    {
-      "_id" : ObjectId("5ef665cdbd8ad9e79c55a083"),
-      "listingId" : "5ef65849bd8ad9e79c559d67",
-      "dateTime" : NumberLong(1586044521956),
-      "content" : "Please give me a call and we'll arrange this for you.",
-      "fromUserId" : "5ef50c2a322399599e3b416f",
-      "toUserId" : "5ef50c1a322399599e3b416a"
-    },
-    {
       "_id" : ObjectId("5f00e1fea0d09a6b97ee0e98"),
       "listingId" : "5ef65913bd8ad9e79c559da8",
       "dateTime" : NumberLong(1593893374658),
@@ -57,6 +33,15 @@ db.getCollection('messages').insert(
       "dateTime" : NumberLong(1606946875188),
       "content" : "Includes free shipping?",
       "fromUserId" : "5ef50c2a322399599e3b416f",
+      "toUserId" : "5ef50c1a322399599e3b416a",
+      "_class" : "com.ecommerce.model.Message"
+    },
+    {
+      "_id" : ObjectId("5fc9a3d1ec59be4cf3353fc2"),
+      "listingId" : "5ef658e3bd8ad9e79c559d8d",
+      "dateTime" : NumberLong(1607050193991),
+      "content" : "Hi there!",
+      "fromUserId" : "5f04df725828ce144a4eda5d",
       "toUserId" : "5ef50c1a322399599e3b416a",
       "_class" : "com.ecommerce.model.Message"
     }

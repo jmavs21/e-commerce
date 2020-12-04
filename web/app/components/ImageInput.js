@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
-
 import colors from '../config/colors';
 
 function ImageInput({ imageUri, onChangeImage }) {
@@ -24,7 +23,7 @@ function ImageInput({ imageUri, onChangeImage }) {
   const handlePress = () => {
     if (!imageUri) selectImage();
     else
-      Alert.alert('Delete', 'Are you sure you want to delete this image?', [
+      Alert.alert('Delete', 'Do you want to delete this image?', [
         { text: 'No' },
         { text: 'Yes', onPress: () => onChangeImage(null) },
       ]);

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { Image } from 'react-native';
 import * as Yup from 'yup';
-
 import Screen from '../components/Screen';
 import {
   ErrorMessage,
@@ -54,7 +52,7 @@ function LoginScreen(props) {
           autoCorrect={false}
           icon="lock"
           name="password"
-          placeholder="password"
+          placeholder="Password"
           secureTextEntry
           textContentType="password"
         />

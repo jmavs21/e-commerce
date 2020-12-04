@@ -74,7 +74,7 @@ function RegisterScreen() {
             autoCorrect={false}
             icon="lock"
             name="password"
-            placeholder="password"
+            placeholder="Password"
             secureTextEntry
             textContentType="password"
           />

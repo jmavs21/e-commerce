@@ -24,8 +24,6 @@ function MessagesScreen(props) {
     loadMessages();
   }, []);
 
-  const [refreshing, setRefreshing] = useState(false);
-
   const handleDelete = async (message) => {
     const originalMessages = messages;
     setMessages(messages.filter((m) => m.id !== message.id));
@@ -63,7 +61,7 @@ function MessagesScreen(props) {
             />
           )}
           ItemSeparatorComponent={ListItemSeparator}
-          refreshing={refreshing}
+          refreshing={loading}
           onRefresh={loadMessages}
         />
       </Screen>

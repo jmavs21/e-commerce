@@ -2,7 +2,6 @@ import React from 'react';
 import { Alert, Keyboard } from 'react-native';
 import { Notifications } from 'expo';
 import * as Yup from 'yup';
-
 import {
   AppForm as Form,
   AppFormField as FormField,
@@ -13,18 +12,14 @@ import messagesApi from '../api/messages';
 function ContactSellerForm({ listing }) {
   const handleSubmit = async ({ message }, { resetForm }) => {
     Keyboard.dismiss();
-
     const result = await messagesApi.sendMessage(message, listing.id);
-
     if (!result.ok) {
       console.log('Error', result);
       return Alert.alert('Error', 'Could not send the message to the seller.');
     }
-
     resetForm();
-
     Notifications.presentLocalNotificationAsync({
-      title: 'Awesome!',
+      title: 'Success',
       body: 'Your message was sent to the seller.',
     });
   };
@@ -36,7 +31,7 @@ function ContactSellerForm({ listing }) {
       validationSchema={validationSchema}
     >
       <FormField
-        maxLength={255}
+        maxLength={35}
         name="message"
         numberOfLines={3}
         placeholder="Message..."

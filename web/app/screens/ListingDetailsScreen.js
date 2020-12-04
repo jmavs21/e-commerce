@@ -1,13 +1,6 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-} from 'react-native';
+import { View, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import { Image } from 'react-native-expo-image-cache';
-
 import colors from '../config/colors';
 import ContactSellerForm from '../components/ContactSellerForm';
 import ListItem from '../components/lists/ListItem';
@@ -18,7 +11,6 @@ function ListingDetailsScreen({ route }) {
 
   return (
     <View>
-      {/* <ScrollView> */}
       <KeyboardAvoidingView
         behavior="position"
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 100}
@@ -33,12 +25,14 @@ function ListingDetailsScreen({ route }) {
           <Text style={styles.title}>{listing.title}</Text>
           <Text style={styles.price}>${listing.price}</Text>
           <View style={styles.userContainer}>
-            <ListItem title={listing.userName} />
+            <ListItem
+              title={listing.userName}
+              image={require('../assets/profile.jpg')}
+            />
           </View>
           <ContactSellerForm listing={listing} />
         </View>
       </KeyboardAvoidingView>
-      {/* </ScrollView> */}
     </View>
   );
 }

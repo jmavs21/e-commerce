@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
-
 import Card from '../components/Card';
 import defaultStyles from '../config/styles';
 import listingsApi from '../api/listings';
@@ -10,8 +9,10 @@ import AppText from '../components/Text';
 import Button from '../components/Button';
 import ActivityIndicator from '../components/ActivityIndicator';
 import useApi from '../hooks/useApi';
+import useAuth from '../auth/useAuth';
 
 function ListingsScreen({ navigation }) {
+  const { user, logOut } = useAuth();
   const { data: listings, error, loading, request: loadListings } = useApi(
     listingsApi.getListings
   );
@@ -19,6 +20,8 @@ function ListingsScreen({ navigation }) {
   useEffect(() => {
     loadListings();
   }, []);
+
+  if (error && listings?.status === 401) logOut();
 
   const [refreshing, setRefreshing] = useState(false);
 

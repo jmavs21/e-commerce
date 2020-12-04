@@ -32,9 +32,13 @@ function AccountScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
-        <ListItem title={user.name} subTitle={user.email} />
+        <ListItem
+          title={user.name}
+          subTitle={user.email}
+          image={require('../assets/myprofile.jpg')}
+        />
       </View>
-      <View style={styles.container}>
+      <View style={styles.profile}>
         <FlatList
           data={menuItems}
           keyExtractor={(menuItem) => menuItem.title}
@@ -65,6 +69,9 @@ function AccountScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     marginVertical: 20,
+  },
+  profile: {
+    marginBottom: 20,
   },
   screen: {
     backgroundColor: defaultStyles.colors.light,

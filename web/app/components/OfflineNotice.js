@@ -11,7 +11,7 @@ function OfflineNotice(props) {
   if (netInfo.type !== 'unknown' && netInfo.isInternetReachable === false)
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>No Internet Connection</Text>
+        <Text style={styles.text}>No internet connection</Text>
       </View>
     );
   return null;

@@ -12,9 +12,13 @@ import ActivityIndicator from '../components/ActivityIndicator';
 import useApi from '../hooks/useApi';
 
 function MyListingsScreen({ navigation }) {
-  const { data: listings, error, loading, request: loadListings } = useApi(
-    listingsApi.getMyListings
-  );
+  const {
+    data: listings,
+    setData: setListings,
+    error,
+    loading,
+    request: loadListings,
+  } = useApi(listingsApi.getMyListings);
 
   const deleteListing = useApi(listingsApi.deleteListing);
 
@@ -22,16 +26,22 @@ function MyListingsScreen({ navigation }) {
     loadListings();
   }, []);
 
-  const [refreshing, setRefreshing] = useState(false);
-
   const deleteMyListing = (listing) => {
     Alert.alert('Delete', 'Do you want to delete this listing?', [
       { text: 'No' },
       {
         text: 'Yes',
         onPress: async () => {
-          await deleteListing.request(listing.id);
-          loadListings();
+          const originalListings = listings;
+          setListings(listings.filter((item) => item.id !== listing.id));
+          const result = await deleteListing.request(listing.id);
+          if (!result.ok) {
+            setListings(originalListings);
+            return Alert.alert(
+              'Error',
+              'Could not delete listing, please retry later.'
+            );
+          }
         },
       },
     ]);
@@ -43,7 +53,7 @@ function MyListingsScreen({ navigation }) {
       <Screen style={styles.screen}>
         {error && (
           <>
-            <AppText>Couldn't retrieve the listings.</AppText>
+            <AppText>Couldn't retrieve your listings.</AppText>
             <Button title="Retry" onPress={loadListings} />
           </>
         )}
@@ -59,7 +69,7 @@ function MyListingsScreen({ navigation }) {
               thumbnailUrl={item.images[0].thumbnailUrl}
             />
           )}
-          refreshing={refreshing}
+          refreshing={loading}
           onRefresh={loadListings}
         />
       </Screen>

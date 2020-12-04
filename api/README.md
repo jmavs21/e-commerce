@@ -1,12 +1,16 @@
-# API
+### API
 
-A Spring Rest API project.
+## Technologies used
 
-## Implementation details
-
+- Java
 - Spring Boot
-- Spring Web MVC
-- Spring Security and [JWT](https://jwt.io/)
+  - Spring Web
+  - Spring Data JPA
+  - Spring Security
+  - Spring Validation
+- MongoDB
+- Java JWT
+- Swagger
 
 ## Requirements
 
@@ -16,24 +20,30 @@ A Spring Rest API project.
 
 - A MongoDB instance.
 
-## Provision demo data
+- Create an **ecommerce** MongoDB database.
 
-Create a **ecommerce** MongoDB database.
+- Run the operations from **collections-demo** folder.
 
-Run the operations from **collections-demo** folder.
+## Installation
 
-## Build application
+- Go into project
+
+```sh
+cd /api
+```
+
+- Build
 
 ```sh
 mvn clean install
 ```
 
-## Run application
+- Run
 
 ```sh
 java -jar target/e-commerce-0.0.1-SNAPSHOT.jar
 ```
 
-## API Documentation
+## API documentation
 
-- Swagger: http://localhost:8080/api/swagger-ui.html#/
+- Via [Swagger](http://localhost:8080/api/swagger-ui.html#/)
