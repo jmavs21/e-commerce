@@ -1,6 +1,6 @@
 # E-commerce
 
-An application to buy and sell stuff.
+A mobile app to buy and sell stuff.
 
 **Example**
 
