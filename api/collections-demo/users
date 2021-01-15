@@ -4,28 +4,28 @@ db.getCollection('users').insert(
       "_id" : ObjectId("5ef50c1a322399599e3b416a"),
       "name" : "Bob",
       "email" : "bob@mail.com",
-      "password" : "bob",
+      "password" : "$2a$10$OkB9QD2PaWyCBviQb7rhkeyFuK3LLFx8vIEz.pD6Wb07fiph4J6Fu",
       "isAdmin" : false,
       "expoPushToken" : "ExponentPushToken[omIy6lOpIr1v-7e1BJsmn1]",
-      "_class" : "com.ecommerce.model.User"
+      "_class" : "com.ecom.domain.users.User"
     },
     {
       "_id" : ObjectId("5ef50c2a322399599e3b416f"),
       "name" : "John",
       "email" : "john@mail.com",
-      "password" : "john",
+      "password" : "$2a$10$OkB9QD2PaWyCBviQb7rhkeyFuK3LLFx8vIEz.pD6Wb07fiph4J6Fu",
       "isAdmin" : false,
       "expoPushToken" : "ExponentPushToken[omIy6lOpIr1v-7e1BJsmn1]",
-      "_class" : "com.ecommerce.model.User"
+      "_class" : "com.ecom.domain.users.User"
     },
     {
       "_id" : ObjectId("5f04df725828ce144a4eda5d"),
       "name" : "Larry",
       "email" : "larry@mail.com",
-      "password" : "$2a$10$JIiapbAseb5CwCmteDRxkueuDTYlesFAaKbrKHXfYmDqD/dFK2m.y",
+      "password" : "$2a$10$OkB9QD2PaWyCBviQb7rhkeyFuK3LLFx8vIEz.pD6Wb07fiph4J6Fu",
       "isAdmin" : false,
       "expoPushToken" : "",
-      "_class" : "com.ecommerce.model.User"
+      "_class" : "com.ecom.domain.users.User"
     }
   ]
 )

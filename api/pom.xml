@@ -9,7 +9,7 @@
 		<version>2.3.1.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.ecommerce</groupId>
+	<groupId>com.ecom</groupId>
 	<artifactId>e-commerce</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api</name>
@@ -18,7 +18,7 @@
 	<properties>
 		<java.version>14</java.version>
 		<modelmapper.version>2.3.7</modelmapper.version>
-		<jjwt.version>0.9.1</jjwt.version>
+		<jjwt.version>0.11.2</jjwt.version>
 		<json.version>20190722</json.version>
 		<springfox.swagger2.version>2.9.2</springfox.swagger2.version>
 		<springfox.swagger2.ui.version>2.9.2</springfox.swagger2.ui.version>
@@ -79,17 +79,20 @@
 		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt</artifactId>
+			<artifactId>jjwt-api</artifactId>
 			<version>${jjwt.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${jjwt.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>${json.version}</version>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>${jjwt.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>

@@ -7,7 +7,7 @@ db.getCollection('messages').insert(
       "content" : "How about $50?",
       "fromUserId" : "5ef50c1a322399599e3b416a",
       "toUserId" : "5ef50c2a322399599e3b416f",
-      "_class" : "com.ecommerce.model.Message"
+      "_class" : "com.ecom.domain.messages.Message"
     },
     {
       "_id" : ObjectId("5fc7f9d2b4f10100be47bbfb"),
@@ -16,7 +16,7 @@ db.getCollection('messages').insert(
       "content" : "I’m interested.",
       "fromUserId" : "5ef50c2a322399599e3b416f",
       "toUserId" : "5ef50c1a322399599e3b416a",
-      "_class" : "com.ecommerce.model.Message"
+      "_class" : "com.ecom.domain.messages.Message"
     },
     {
       "_id" : ObjectId("5fc80fb3fd37c217c8989489"),
@@ -25,7 +25,7 @@ db.getCollection('messages').insert(
       "content" : "Still available?",
       "fromUserId" : "5ef50c1a322399599e3b416a",
       "toUserId" : "5ef50c2a322399599e3b416f",
-      "_class" : "com.ecommerce.model.Message"
+      "_class" : "com.ecom.domain.messages.Message"
     },
     {
       "_id" : ObjectId("5fc8103bfd37c217c898948b"),
@@ -34,7 +34,7 @@ db.getCollection('messages').insert(
       "content" : "Includes free shipping?",
       "fromUserId" : "5ef50c2a322399599e3b416f",
       "toUserId" : "5ef50c1a322399599e3b416a",
-      "_class" : "com.ecommerce.model.Message"
+      "_class" : "com.ecom.domain.messages.Message"
     },
     {
       "_id" : ObjectId("5fc9a3d1ec59be4cf3353fc2"),
@@ -43,7 +43,7 @@ db.getCollection('messages').insert(
       "content" : "Hi there!",
       "fromUserId" : "5f04df725828ce144a4eda5d",
       "toUserId" : "5ef50c1a322399599e3b416a",
-      "_class" : "com.ecommerce.model.Message"
+      "_class" : "com.ecom.domain.messages.Message"
     }
   ]
 )
