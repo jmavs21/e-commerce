@@ -1,6 +1,6 @@
-### API
+## API
 
-## Technologies used
+### Technologies used
 
 - Java
 - Spring Boot
@@ -12,7 +12,7 @@
 - Java JWT
 - Swagger
 
-## Requirements
+### Requirements
 
 - Download and install [Maven](https://maven.apache.org/download.cgi) >= 3
 
@@ -24,7 +24,7 @@
 
 - Run the operations from **collections-demo** folder.
 
-## Installation
+### Installation
 
 - Go into project
 
@@ -44,6 +44,15 @@ mvn clean install
 java -jar target/e-commerce-0.0.1-SNAPSHOT.jar
 ```
 
-## API documentation
+### API documentation
 
 - Via [Swagger](http://localhost:8080/api/swagger-ui.html#/)
+
+### Architecture
+
+- Multilayered architecture: each layer can only call their inner layers.
+  ![](cleanarchitecture.png)
+
+- Package by component: each domain has its own package component.
+  ![](ecompkgbycomp.png)
+

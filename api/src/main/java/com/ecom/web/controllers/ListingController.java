@@ -87,7 +87,9 @@ public class ListingController {
   public void delete(@PathVariable String id) {
     Listing listing = getListing(id);
     listingService.delete(listing.getId());
-    listing.getImages().stream().forEach(i -> storageService.deleteResource(i.getFileName()));
+    for (FileName fileName : listing.getImages()) {
+      storageService.deleteResource(fileName.getFileName());
+    }
   }
 
   @GetMapping("/assets/{filename:.+}")
