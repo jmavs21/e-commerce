@@ -1,4 +1,6 @@
-## Web
+## web
+
+[E-commerce](https://github.com/jmavs21/e-commerce) frontend.
 
 ### Technologies used
 
@@ -21,7 +23,7 @@
   sudo npm i -g expo-cli
   ```
 
-- MacOS with Xcode installed.
+- macOS with Xcode installed.
 
 ### Installation
 
@@ -43,7 +45,7 @@ npm i
 npm start
 ```
 
-- Open iOS simulator: Xcode -> Open Devloper Tool -> Simulator
+- Open iOS simulator: Xcode -> Open Developer Tool -> Simulator
 
 - Select 'Run on iOS simulator' on Expo Developer Tools.
 

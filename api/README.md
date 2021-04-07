@@ -1,4 +1,6 @@
-## API
+## api
+
+[E-commerce](https://github.com/jmavs21/e-commerce) backend.
 
 ### Technologies used
 
@@ -22,7 +24,7 @@
 
 - Create an **ecommerce** MongoDB database.
 
-- Run the operations from **collections-demo** folder.
+- Run the operations from the **collections-demo** folder.
 
 ### Installation
 
@@ -50,9 +52,8 @@ java -jar target/e-commerce-0.0.1-SNAPSHOT.jar
 
 ### Architecture
 
-- Multilayered architecture: each layer can only call their inner layers.
+- Multilayered architecture: each layer can only call its inner layers.
   ![](cleanarchitecture.png)
 
-- Package by component: each domain has its own package component.
+- Package by component: each domain has its package component.
   ![](ecompkgbycomp.png)
-
